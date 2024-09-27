@@ -1,0 +1,28 @@
+stuff={'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
+import copy
+def displayInventory(inventory):
+    print("Inventory:")
+    item_total = 0
+    for k, v in inventory.items():
+        print(v,'  ',k)
+        item_total+=v
+    print("Total number of items: " + str(item_total))
+
+displayInventory(stuff)
+def addToInventory(inventory, addedItems):
+    inven=copy.deepcopy(inventory)
+    for k,v in inventory.items():
+        for j in addedItems:
+            if k==j:
+                inven[k]+=1 
+            else:
+                inven.setdefault(j,1)
+    return inven
+dragonLoot=[]
+a=int(input("How many items have you recieved?"))
+for i in range(a):
+    print("Enter item")
+    val=input()
+    dragonLoot.append(val)
+inv = addToInventory(stuff, dragonLoot)
+displayInventory(inv)
